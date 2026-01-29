@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Morgan | Outcome-Driven Portfolio</title>
+    <title>Portfolio Loading...</title>
     
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -48,7 +48,7 @@
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-        /* Animation Utilities - FAIL SAFE: Content is visible by default */
+        /* Animation Utilities */
         .fade-in-up {
             animation: fadeInUp 0.8s ease-out forwards;
         }
@@ -103,18 +103,18 @@
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
-                    Available for Q4 Roles
+                    <span id="hero-availability">Available for Q4 Roles</span>
                 </div>
 
                 <div class="space-y-4">
-                    <div class="text-lg font-medium text-slate-500 tracking-wide uppercase">Alex Morgan</div>
-                    <h1 class="text-5xl md:text-7xl font-serif font-medium leading-[1.1] text-slate-900">
+                    <div id="hero-name" class="text-lg font-medium text-slate-500 tracking-wide uppercase">Alex Morgan</div>
+                    <h1 id="hero-role" class="text-5xl md:text-7xl font-serif font-medium leading-[1.1] text-slate-900">
                         Growth operator <br>
                         <span class="text-slate-500 italic">turning communities into revenue.</span>
                     </h1>
                 </div>
 
-                <p class="text-xl text-slate-600 leading-relaxed max-w-2xl">
+                <p id="hero-bio" class="text-xl text-slate-600 leading-relaxed max-w-2xl">
                     I combine product psychology and data-driven loops to scale B2B SaaS ecosystems. 
                     Previously <strong>Head of Growth @ Company X</strong>.
                 </p>
@@ -139,54 +139,8 @@
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- Metric 1 -->
-                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover-lift relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-6 opacity-5"><i class="ri-group-line text-8xl"></i></div>
-                    <div class="relative z-10">
-                        <div class="flex items-baseline gap-2 mb-2">
-                            <span class="text-5xl font-bold text-slate-900">50%</span>
-                            <span class="text-emerald-600 font-medium text-sm">↑ Lift</span>
-                        </div>
-                        <h4 class="text-lg font-semibold text-slate-700 mb-4">Engagement Growth</h4>
-                        <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                            <div class="bg-emerald-500 h-full rounded-full" style="width: 85%"></div>
-                        </div>
-                        <p class="text-sm text-slate-500 mt-4">Revived 14,600 member community from dormancy.</p>
-                    </div>
-                </div>
-
-                <!-- Metric 2 -->
-                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover-lift relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-6 opacity-5"><i class="ri-money-dollar-circle-line text-8xl"></i></div>
-                    <div class="relative z-10">
-                        <div class="flex items-baseline gap-2 mb-2">
-                            <span class="text-5xl font-bold text-slate-900">$2.4M</span>
-                            <span class="text-blue-600 font-medium text-sm">Pipeline</span>
-                        </div>
-                        <h4 class="text-lg font-semibold text-slate-700 mb-4">Revenue Influenced</h4>
-                        <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                            <div class="bg-blue-500 h-full rounded-full" style="width: 92%"></div>
-                        </div>
-                        <p class="text-sm text-slate-500 mt-4">Direct attribution from organic community channels.</p>
-                    </div>
-                </div>
-
-                <!-- Metric 3 -->
-                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover-lift relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-6 opacity-5"><i class="ri-flashlight-line text-8xl"></i></div>
-                    <div class="relative z-10">
-                        <div class="flex items-baseline gap-2 mb-2">
-                            <span class="text-5xl font-bold text-slate-900">3x</span>
-                            <span class="text-purple-600 font-medium text-sm">Faster</span>
-                        </div>
-                        <h4 class="text-lg font-semibold text-slate-700 mb-4">Time-to-Value</h4>
-                        <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                            <div class="bg-purple-500 h-full rounded-full" style="width: 75%"></div>
-                        </div>
-                        <p class="text-sm text-slate-500 mt-4">Reduced onboarding friction for enterprise clients.</p>
-                    </div>
-                </div>
+            <div id="metrics-grid" class="grid md:grid-cols-3 gap-6">
+                <!-- Metrics will be injected here via JS -->
             </div>
         </section>
 
@@ -196,115 +150,10 @@
                 <h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-2">Selected Work</h2>
                 <h3 class="text-3xl font-serif text-slate-900">Deep Dives</h3>
             </div>
-
-            <!-- Case Study 1 -->
-            <article class="grid md:grid-cols-12 gap-12 group">
-                <div class="md:col-span-4 space-y-4">
-                    <div class="text-sm font-medium text-slate-500">2023 • Company X</div>
-                    <h4 class="text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Revived Dead Discord → $2.4M Pipeline</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-slate-100 text-xs font-medium text-slate-600 rounded">Strategy</span>
-                        <span class="px-2 py-1 bg-slate-100 text-xs font-medium text-slate-600 rounded">Community</span>
-                    </div>
-                </div>
-                <div class="md:col-span-8 space-y-8">
-                    <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
-                        <h5 class="font-bold text-slate-900 mb-2">The Situation</h5>
-                        <p class="text-slate-600 leading-relaxed">
-                            Company X, a Series B SaaS platform, had strong product-market fit but stalled growth. Marketing was focused on performance ads but had no systematic approach to content. Leadership needed a new growth channel to reach $15M ARR.
-                        </p>
-                    </div>
-                    
-                    <div class="grid sm:grid-cols-2 gap-8">
-                        <div>
-                            <h5 class="font-bold text-slate-900 mb-2 border-l-2 border-red-500 pl-3">The Challenge</h5>
-                            <p class="text-sm text-slate-600">Lead generation dropped 40% QoQ. Pipeline dried up, threatening Series B targets. No budget for paid ads.</p>
-                        </div>
-                        <div>
-                            <h5 class="font-bold text-slate-900 mb-2 border-l-2 border-emerald-500 pl-3">The Outcome</h5>
-                            <ul class="text-sm text-slate-600 space-y-1">
-                                <li>• <strong>140% increase</strong> in organic leads</li>
-                                <li>• <strong>$2.4M</strong> influenced revenue</li>
-                                <li>• Achieved in 5 months</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h5 class="font-bold text-slate-900 mb-4">My Approach</h5>
-                        <div class="space-y-4">
-                            <div class="flex gap-4">
-                                <div class="flex-shrink-0 w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
-                                <div>
-                                    <h6 class="font-semibold text-slate-900">Pivot to "Build in Public"</h6>
-                                    <p class="text-sm text-slate-600 mt-1">Shifted from polished corporate comms to raw, engineer-focused updates to regain trust.</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4">
-                                <div class="flex-shrink-0 w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
-                                <div>
-                                    <h6 class="font-semibold text-slate-900">Gamified Ambassador Program</h6>
-                                    <p class="text-sm text-slate-600 mt-1">Identified top 50 active users and gave them direct product access, turning them into zero-cost support.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Case Study 2 -->
-            <article class="grid md:grid-cols-12 gap-12 group border-t border-slate-100 pt-16">
-                <div class="md:col-span-4 space-y-4">
-                    <div class="text-sm font-medium text-slate-500">2022 • Protocol Y</div>
-                    <h4 class="text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Governance Participation +40%</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-slate-100 text-xs font-medium text-slate-600 rounded">Web3</span>
-                        <span class="px-2 py-1 bg-slate-100 text-xs font-medium text-slate-600 rounded">Product Marketing</span>
-                    </div>
-                </div>
-                <div class="md:col-span-8 space-y-8">
-                    <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
-                        <h5 class="font-bold text-slate-900 mb-2">The Situation</h5>
-                        <p class="text-slate-600 leading-relaxed">
-                            A major DeFi protocol was struggling with token holder apathy. Only 3% of holders voted, creating "centralization risk" that blocked a key institutional partnership.
-                        </p>
-                    </div>
-                    
-                    <div class="grid sm:grid-cols-2 gap-8">
-                        <div>
-                            <h5 class="font-bold text-slate-900 mb-2 border-l-2 border-amber-500 pl-3">The Challenge</h5>
-                            <p class="text-sm text-slate-600">97% of tokens were dormant. Institutional partner threatened to pull the deal.</p>
-                        </div>
-                        <div>
-                            <h5 class="font-bold text-slate-900 mb-2 border-l-2 border-emerald-500 pl-3">The Outcome</h5>
-                            <ul class="text-sm text-slate-600 space-y-1">
-                                <li>• <strong>40% Growth</strong> in unique voters</li>
-                                <li>• <strong>$2M</strong> partnership secured</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h5 class="font-bold text-slate-900 mb-4">My Approach</h5>
-                        <div class="space-y-4">
-                            <div class="flex gap-4">
-                                <div class="flex-shrink-0 w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
-                                <div>
-                                    <h6 class="font-semibold text-slate-900">Simplified Voting UI</h6>
-                                    <p class="text-sm text-slate-600 mt-1">Removed 3 friction steps and implemented "Gasless Voting" via Snapshot.</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4">
-                                <div class="flex-shrink-0 w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
-                                <div>
-                                    <h6 class="font-semibold text-slate-900">Delegation Campaign</h6>
-                                    <p class="text-sm text-slate-600 mt-1">Humanized the "whales" via Twitter Spaces interviews, encouraging delegation.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
+            
+            <div id="case-studies-container" class="space-y-16">
+                 <!-- Case Studies will be injected here via JS -->
+            </div>
         </section>
 
         <!-- Writing Section -->
@@ -319,45 +168,8 @@
                 </a>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Post 1 -->
-                <a href="#" class="group block space-y-4">
-                    <div class="aspect-video bg-slate-100 rounded-2xl overflow-hidden relative border border-slate-200">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-bold shadow-sm">Strategy</div>
-                    </div>
-                    <div>
-                        <div class="text-xs text-slate-400 mb-2">Oct 24, 2023</div>
-                        <h4 class="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-2">Why "Community First" is a Trap for B2B</h4>
-                        <p class="text-sm text-slate-600 line-clamp-2">The controversial take on why product-led growth needs to precede community building in enterprise SaaS.</p>
-                    </div>
-                </a>
-
-                <!-- Post 2 -->
-                <a href="#" class="group block space-y-4">
-                    <div class="aspect-video bg-slate-100 rounded-2xl overflow-hidden relative border border-slate-200">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-bold shadow-sm">Metrics</div>
-                    </div>
-                    <div>
-                        <div class="text-xs text-slate-400 mb-2">Sep 12, 2023</div>
-                        <h4 class="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-2">The Metrics That Actually Matter</h4>
-                        <p class="text-sm text-slate-600 line-clamp-2">Stop tracking Discord messages. Start tracking value capture and retention cohorts.</p>
-                    </div>
-                </a>
-
-                <!-- Post 3 -->
-                <a href="#" class="group block space-y-4">
-                    <div class="aspect-video bg-slate-100 rounded-2xl overflow-hidden relative border border-slate-200">
-                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-bold shadow-sm">Growth</div>
-                    </div>
-                    <div>
-                        <div class="text-xs text-slate-400 mb-2">Aug 05, 2023</div>
-                        <h4 class="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-2">Scaling Governance Efficiently</h4>
-                        <p class="text-sm text-slate-600 line-clamp-2">How to get token holders to care about proposals without bribing them.</p>
-                    </div>
-                </a>
+            <div id="posts-grid" class="grid md:grid-cols-3 gap-8">
+                <!-- Posts will be injected here via JS -->
             </div>
         </section>
 
@@ -443,21 +255,142 @@
                 I am currently open to discussing Head of Growth and Senior Product Marketing roles.
             </p>
             <div class="flex justify-center gap-4">
-                <a href="mailto:alex@example.com" class="px-8 py-4 bg-slate-900 text-white font-bold rounded-full hover:bg-slate-800 transition-shadow hover:shadow-xl">
+                <a id="email-link" href="mailto:alex@example.com" class="px-8 py-4 bg-slate-900 text-white font-bold rounded-full hover:bg-slate-800 transition-shadow hover:shadow-xl">
                     Get in Touch
                 </a>
             </div>
             
             <div class="pt-16 border-t border-slate-200 mt-16 flex justify-between items-center text-sm text-slate-500">
-                <div>&copy; 2024 Alex Morgan</div>
+                <div id="footer-name">&copy; 2024 Alex Morgan</div>
                 <div class="flex gap-6">
-                    <a href="#" class="hover:text-slate-900">Twitter</a>
-                    <a href="#" class="hover:text-slate-900">LinkedIn</a>
+                    <a id="twitter-link" href="#" class="hover:text-slate-900">Twitter</a>
+                    <a id="linkedin-link" href="#" class="hover:text-slate-900">LinkedIn</a>
+                    <a href="builder.html" class="text-brand-600 font-medium hover:text-brand-900">⚡ Build Your Own</a>
                 </div>
             </div>
         </section>
 
     </main>
 
+    <!-- LOAD CONFIG AND RENDER -->
+    <script src="config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Basic Info
+            document.title = `${portfolioData.name} | Portfolio`;
+            document.getElementById('hero-name').textContent = portfolioData.name;
+            document.getElementById('footer-name').innerHTML = `&copy; ${new Date().getFullYear()} ${portfolioData.name}`;
+            document.getElementById('hero-role').innerHTML = portfolioData.role.replace('\n', '<br>');
+            document.getElementById('hero-bio').innerHTML = portfolioData.bio;
+            document.getElementById('hero-availability').textContent = portfolioData.availability;
+            document.getElementById('email-link').href = `mailto:${portfolioData.email}`;
+
+            // Socials
+            if(portfolioData.social.twitter) document.getElementById('twitter-link').href = portfolioData.social.twitter;
+            if(portfolioData.social.linkedin) document.getElementById('linkedin-link').href = portfolioData.social.linkedin;
+
+            // 2. Metrics
+            const metricsContainer = document.getElementById('metrics-grid');
+            portfolioData.metrics.forEach(metric => {
+                const colors = {
+                    emerald: 'bg-emerald-500 text-emerald-600',
+                    blue: 'bg-blue-500 text-blue-600',
+                    purple: 'bg-purple-500 text-purple-600',
+                    orange: 'bg-orange-500 text-orange-600'
+                };
+                const colorClass = colors[metric.color] || colors.blue;
+                const textColor = colorClass.split(' ')[1];
+                const bgColor = colorClass.split(' ')[0];
+
+                metricsContainer.innerHTML += `
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover-lift relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-6 opacity-5"><i class="ri-bar-chart-line text-8xl"></i></div>
+                    <div class="relative z-10">
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="text-5xl font-bold text-slate-900">${metric.value}</span>
+                            <span class="${textColor} font-medium text-sm">↑ Lift</span>
+                        </div>
+                        <h4 class="text-lg font-semibold text-slate-700 mb-4">${metric.label}</h4>
+                        <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                            <div class="${bgColor} h-full rounded-full" style="width: ${metric.progress}%"></div>
+                        </div>
+                        <p class="text-sm text-slate-500 mt-4">${metric.description}</p>
+                    </div>
+                </div>`;
+            });
+
+            // 3. Case Studies
+            const caseContainer = document.getElementById('case-studies-container');
+            portfolioData.caseStudies.forEach((study, index) => {
+                const borderClass = index === 0 ? '' : 'border-t border-slate-100 pt-16';
+                
+                let approachHTML = '';
+                study.approach.forEach((step, i) => {
+                    approachHTML += `
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-sm">${i+1}</div>
+                        <div>
+                            <h6 class="font-semibold text-slate-900">${step.title}</h6>
+                            <p class="text-sm text-slate-600 mt-1">${step.description}</p>
+                        </div>
+                    </div>`;
+                });
+
+                let challengesHTML = '';
+                let outcomesHTML = '';
+                
+                study.challenges.forEach(c => challengesHTML += `<li>• ${c}</li>`);
+                study.outcomes.forEach(o => outcomesHTML += `<li>• <strong>${o}</strong></li>`);
+
+                caseContainer.innerHTML += `
+                <article class="grid md:grid-cols-12 gap-12 group ${borderClass}">
+                    <div class="md:col-span-4 space-y-4">
+                        <div class="text-sm font-medium text-slate-500">${study.year} • ${study.company}</div>
+                        <h4 class="text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">${study.title}</h4>
+                        <div class="flex flex-wrap gap-2">
+                            ${study.tags.map(tag => `<span class="px-2 py-1 bg-slate-100 text-xs font-medium text-slate-600 rounded">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="md:col-span-8 space-y-8">
+                        <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                            <h5 class="font-bold text-slate-900 mb-2">The Situation</h5>
+                            <p class="text-slate-600 leading-relaxed">${study.situation}</p>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-8">
+                            <div>
+                                <h5 class="font-bold text-slate-900 mb-2 border-l-2 border-red-500 pl-3">The Challenge</h5>
+                                <ul class="text-sm text-slate-600 space-y-1">${challengesHTML}</ul>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 mb-2 border-l-2 border-emerald-500 pl-3">The Outcome</h5>
+                                <ul class="text-sm text-slate-600 space-y-1">${outcomesHTML}</ul>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-slate-900 mb-4">My Approach</h5>
+                            <div class="space-y-4">${approachHTML}</div>
+                        </div>
+                    </div>
+                </article>`;
+            });
+
+            // 4. Posts
+            const postsContainer = document.getElementById('posts-grid');
+            portfolioData.posts.forEach(post => {
+                postsContainer.innerHTML += `
+                <a href="${post.url}" class="group block space-y-4">
+                    <div class="aspect-video bg-slate-100 rounded-2xl overflow-hidden relative border border-slate-200">
+                        <div class="absolute inset-0 bg-slate-200 animate-pulse"></div> <!-- Placeholder image -->
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-bold shadow-sm relative z-10">${post.category}</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-400 mb-2">${post.date}</div>
+                        <h4 class="text-xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-2">${post.title}</h4>
+                        <p class="text-sm text-slate-600 line-clamp-2">${post.description}</p>
+                    </div>
+                </a>`;
+            });
+        });
+    </script>
 </body>
 </html>
