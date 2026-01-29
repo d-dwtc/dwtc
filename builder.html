@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Generator | Elite Outcome Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Custom scrollbar for sidebar */
+        .sidebar-scroll::-webkit-scrollbar { width: 5px; }
+        .sidebar-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        
+        /* Form styling */
+        .input-group { margin-bottom: 1rem; }
+        .input-label { display: block; font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .input-field { width: 100%; padding: 0.5rem 0.75rem; border: 1px solid #e2e8f0; border-radius: 0.5rem; font-size: 0.875rem; transition: all 0.2s; }
+        .input-field:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+        .section-header { cursor: pointer; user-select: none; }
+    </style>
+</head>
+<body class="bg-slate-100 h-screen flex flex-col overflow-hidden">
+
+    <!-- Header -->
+    <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 shrink-0 z-20">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-slate-900 text-white rounded-lg flex items-center justify-center font-serif font-bold">P.</div>
+            <h1 class="font-semibold text-slate-900">Portfolio Builder</h1>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="updatePreview()" class="text-sm font-medium text-slate-600 hover:text-slate-900 mr-2 flex items-center gap-1">
+                <i class="ri-refresh-line"></i> Refresh Preview
+            </button>
+            <div class="h-6 w-px bg-slate-200 mx-1"></div>
+            <button onclick="downloadPDF()" class="px-4 py-2 bg-white border border-slate-200 text-slate-700 text-sm font-medium rounded-lg hover:bg-slate-50 transition-colors flex items-center gap-2">
+                <i class="ri-printer-line"></i> Print / Save PDF
+            </button>
+            <button onclick="downloadSource()" class="px-4 py-2 bg-slate-900 text-white text-sm font-medium rounded-lg hover:bg-slate-800 transition-colors flex items-center gap-2 shadow-sm">
+                <i class="ri-download-cloud-2-line"></i> Download Website
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <div class="flex flex-1 overflow-hidden">
+        
+        <!-- Sidebar Controls -->
+        <aside class="w-96 bg-white border-r border-slate-200 flex flex-col z-10">
+            <div class="flex-1 overflow-y-auto sidebar-scroll p-6 space-y-8">
+                
+                <!-- Style Settings -->
+                <div class="space-y-4">
+                    <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wider border-b border-slate-100 pb-2">Design</h2>
+                    <div class="input-group">
+                        <label class="input-label">Theme Color</label>
+                        <select id="themeColor" class="input-field" onchange="updatePreview()">
+                            <option value="emerald">Emerald (Growth)</option>
+                            <option value="blue">Blue (Corporate)</option>
+                            <option value="purple">Purple (Creative)</option>
+                            <option value="orange">Orange (Energy)</option>
+                            <option value="slate">Slate (Minimal)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Personal Info -->
+                <div class="space-y-4">
+                    <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wider border-b border-slate-100 pb-2">Profile</h2>
+                    <div class="input-group">
+                        <label class="input-label">Full Name</label>
+                        <input type="text" id="p_name" class="input-field" value="Alex Morgan" oninput="updatePreviewDebounced()">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Role Headline</label>
+                        <textarea id="p_role" class="input-field h-20" oninput="updatePreviewDebounced()">Growth operator turning communities into revenue.</textarea>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Bio/Summary</label>
+                        <textarea id="p_bio" class="input-field h-24" oninput="updatePreviewDebounced()">I combine product psychology and data-driven loops to scale B2B SaaS ecosystems. Previously Head of Growth @ Company X.</textarea>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Availability Status</label>
+                        <input type="text" id="p_status" class="input-field" value="Available for Q4 Roles" oninput="updatePreviewDebounced()">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Email</label>
+                        <input type="email" id="p_email" class="input-field" value="alex@example.com" oninput="updatePreviewDebounced()">
+                    </div>
+                </div>
+
+                <!-- Metrics -->
+                <div class="space-y-4">
+                    <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wider border-b border-slate-100 pb-2">Key Metrics</h2>
+                    
+                    <!-- Metric 1 -->
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <div class="text-xs font-bold text-slate-500 mb-2">METRIC 1</div>
+                        <div class="grid grid-cols-2 gap-2 mb-2">
+                            <input type="text" id="m1_val" class="input-field" placeholder="Value (e.g. 50%)" value="50%">
+                            <input type="text" id="m1_label" class="input-field" placeholder="Label" value="Engagement">
+                        </div>
+                        <input type="text" id="m1_desc" class="input-field mb-2" placeholder="Description" value="Revived 14k member community">
+                        <input type="range" id="m1_prog" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer" min="0" max="100" value="85">
+                    </div>
+
+                    <!-- Metric 2 -->
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <div class="text-xs font-bold text-slate-500 mb-2">METRIC 2</div>
+                        <div class="grid grid-cols-2 gap-2 mb-2">
+                            <input type="text" id="m2_val" class="input-field" placeholder="Value" value="$2.4M">
+                            <input type="text" id="m2_label" class="input-field" placeholder="Label" value="Pipeline">
+                        </div>
+                        <input type="text" id="m2_desc" class="input-field mb-2" placeholder="Description" value="Direct attribution revenue">
+                        <input type="range" id="m2_prog" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer" min="0" max="100" value="92">
+                    </div>
+
+                    <!-- Metric 3 -->
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <div class="text-xs font-bold text-slate-500 mb-2">METRIC 3</div>
+                        <div class="grid grid-cols-2 gap-2 mb-2">
+                            <input type="text" id="m3_val" class="input-field" placeholder="Value" value="3x">
+                            <input type="text" id="m3_label" class="input-field" placeholder="Label" value="Speed">
+                        </div>
+                        <input type="text" id="m3_desc" class="input-field mb-2" placeholder="Description" value="Faster onboarding time">
+                        <input type="range" id="m3_prog" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer" min="0" max="100" value="75">
+                    </div>
+                </div>
+
+                <!-- Case Studies -->
+                <div class="space-y-4">
+                    <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wider border-b border-slate-100 pb-2">Case Study 1</h2>
+                    <input type="text" id="cs1_title" class="input-field" value="Revived Dead Discord → $2.4M Pipeline">
+                    <input type="text" id="cs1_meta" class="input-field" value="2023 • Company X">
+                    <textarea id="cs1_situation" class="input-field h-20" placeholder="Situation">Company X, a Series B SaaS platform, had strong product-market fit but stalled growth.</textarea>
+                    
+                    <div class="grid grid-cols-2 gap-2">
+                        <textarea id="cs1_challenge" class="input-field h-20" placeholder="Challenge">Lead generation dropped 40%.</textarea>
+                        <textarea id="cs1_outcome" class="input-field h-20" placeholder="Outcome">140% organic lead growth.</textarea>
+                    </div>
+                </div>
+
+                <!-- Writing / Posts -->
+                <div class="space-y-4">
+                    <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wider border-b border-slate-100 pb-2">Featured Posts</h2>
+                    
+                    <!-- Post 1 -->
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <div class="text-xs font-bold text-slate-500 mb-2">POST 1</div>
+                        <input type="text" id="post1_title" class="input-field mb-2" placeholder="Post Title" value="Why Community First is a Trap">
+                        <input type="text" id="post1_category" class="input-field mb-2" placeholder="Category" value="Strategy">
+                        <input type="text" id="post1_date" class="input-field mb-2" placeholder="Date" value="Oct 24, 2023">
+                        <textarea id="post1_desc" class="input-field h-16" placeholder="Description">The controversial take on why product-led growth needs to precede community building.</textarea>
+                    </div>
+
+                    <!-- Post 2 -->
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <div class="text-xs font-bold text-slate-500 mb-2">POST 2</div>
+                        <input type="text" id="post2_title" class="input-field mb-2" placeholder="Post Title" value="The Metrics That Matter">
+                        <input type="text" id="post2_category" class="input-field mb-2" placeholder="Category" value="Analytics">
+                        <input type="text" id="post2_date" class="input-field mb-2" placeholder="Date" value="Sep 12, 2023">
+                        <textarea id="post2_desc" class="input-field h-16" placeholder="Description">Stop tracking vanity metrics. Start tracking value capture.</textarea>
+                    </div>
+
+                    <!-- Post 3 -->
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <div class="text-xs font-bold text-slate-500 mb-2">POST 3</div>
+                        <input type="text" id="post3_title" class="input-field mb-2" placeholder="Post Title" value="Scaling Governance Efficiently">
+                        <input type="text" id="post3_category" class="input-field mb-2" placeholder="Category" value="Growth">
+                        <input type="text" id="post3_date" class="input-field mb-2" placeholder="Date" value="Aug 05, 2023">
+                        <textarea id="post3_desc" class="input-field h-16" placeholder="Description">How to get holders to care without bribing them.</textarea>
+                    </div>
+                </div>
+
+                <!-- Gallery Images -->
+                <div class="space-y-4">
+                    <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wider border-b border-slate-100 pb-2">Gallery Images</h2>
+                    <div class="text-xs text-slate-500 mb-2">Paste image URLs (Unsplash, Imgur, etc.)</div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">Image 1 (Large)</label>
+                        <input type="text" id="gallery1" class="input-field" value="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Image 2</label>
+                        <input type="text" id="gallery2" class="input-field" value="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Image 3</label>
+                        <input type="text" id="gallery3" class="input-field" value="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Image 4 (Wide)</label>
+                        <input type="text" id="gallery4" class="input-field" value="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="space-y-4">
+                    <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wider border-b border-slate-100 pb-2">Social Links</h2>
+                    <div class="input-group">
+                        <label class="input-label">Twitter / X Handle</label>
+                        <input type="text" id="social_twitter" class="input-field" placeholder="https://twitter.com/username" value="https://twitter.com/alexmorgan">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">LinkedIn Profile</label>
+                        <input type="text" id="social_linkedin" class="input-field" placeholder="https://linkedin.com/in/username" value="https://linkedin.com/in/alexmorgan">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Telegram</label>
+                        <input type="text" id="social_telegram" class="input-field" placeholder="https://t.me/username" value="">
+                    </div>
+                </div>
+
+                <!-- Resources -->
+                <div class="space-y-4">
+                    <h2 class="text-xs font-bold text-slate-900 uppercase tracking-wider border-b border-slate-100 pb-2">Downloadable Resources</h2>
+                    <div class="input-group">
+                        <label class="input-label">Resource 1 Title</label>
+                        <input type="text" id="res1_title" class="input-field" value="Resume / CV">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Resource 1 Link</label>
+                        <input type="text" id="res1_link" class="input-field" placeholder="Google Drive / Dropbox URL" value="#">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Resource 2 Title</label>
+                        <input type="text" id="res2_title" class="input-field" value="Community Growth Playbook">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Resource 2 Link</label>
+                        <input type="text" id="res2_link" class="input-field" placeholder="Google Drive / Dropbox URL" value="#">
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="p-4 border-t border-slate-200 bg-slate-50 text-xs text-slate-500 text-center">
+                Edit fields to update preview instantly.
+            </div>
+        </aside>
+
+        <!-- Live Preview Area -->
+        <main class="flex-1 bg-slate-100 p-8 flex justify-center overflow-hidden relative">
+            <div class="relative w-full h-full max-w-[1200px] shadow-2xl rounded-xl overflow-hidden bg-white ring-1 ring-slate-900/5">
+                <div class="absolute inset-0 bg-white z-0 flex items-center justify-center text-slate-400">
+                    <div class="animate-pulse">Loading Preview...</div>
+                </div>
+                <!-- The Iframe where the site lives -->
+                <iframe id="previewFrame" class="w-full h-full relative z-10" title="Portfolio Preview"></iframe>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Template Logic -->
+    <script src="builder.js"></script>
+</body>
+</html>
